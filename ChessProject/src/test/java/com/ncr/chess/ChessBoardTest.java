@@ -86,4 +86,12 @@ public class ChessBoardTest {
             }
         }
     }
+
+    @Test
+    public void testRemovePiece_should_remove_element_and_make_referenceEmpty() {
+        Pawn pawn = new Pawn(PieceColor.BLACK);
+        testSubject.addPiece(pawn, 6, 5, PieceColor.BLACK);
+        Pawn pawnRemoved = testSubject.removePiece(6, 5);
+        Assert.assertNotNull(pawnRemoved);
+    }
 }

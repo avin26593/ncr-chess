@@ -45,14 +45,14 @@ public class Pawn {
 
     public void move(MovementType movementType, int newX, int newY) {
         if (movementType.equals(MovementType.MOVE) && checkLegalMove(newX, newY)) {
-            chessBoard.removePiece(this.xCoordinate, this.yCoordinate);
-            chessBoard.addPiece(this, newX, newY, this.pieceColor);
+            chessBoard.removePiece(xCoordinate, yCoordinate);
+            chessBoard.addPiece(this, newX, newY, pieceColor);
         }
 
     }
 
     private boolean checkLegalMove(int newX, int newY) {
-        return this.xCoordinate == newX && (newY == this.yCoordinate + 1 || newY == this.yCoordinate - 1);
+        return xCoordinate == newX && (newY == yCoordinate + 1 || newY == yCoordinate - 1);
     }
 
     @Override
