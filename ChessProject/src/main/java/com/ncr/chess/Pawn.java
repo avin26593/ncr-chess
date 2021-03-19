@@ -1,6 +1,6 @@
 package com.ncr.chess;
 
-public class Pawn {
+public class Pawn implements Piece {
 
     private ChessBoard chessBoard;
     private int xCoordinate;
@@ -43,6 +43,7 @@ public class Pawn {
         pieceColor = value;
     }
 
+    @Override
     public void move(MovementType movementType, int newX, int newY) {
         if (movementType.equals(MovementType.MOVE) && checkLegalMove(newX, newY)) {
             chessBoard.removePiece(xCoordinate, yCoordinate);
@@ -64,4 +65,5 @@ public class Pawn {
         String eol = System.lineSeparator();
         return String.format("Current X: {1}{0}Current Y: {2}{0}Piece Color: {3}", eol, xCoordinate, yCoordinate, pieceColor);
     }
+
 }

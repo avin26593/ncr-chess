@@ -15,12 +15,13 @@ public class ChessBoardTest {
 
     @Test
     public void testHas_MaxBoardWidth_of_7() {
-        Assert.assertEquals(7, ChessBoard.MAX_BOARD_HEIGHT);
+        //Updated test since Chess board with and height should be 8*8
+        Assert.assertEquals(8, ChessBoard.MAX_BOARD_HEIGHT);
     }
 
     @Test
     public void testHas_MaxBoardHeight_of_7() {
-        Assert.assertEquals(7, ChessBoard.MAX_BOARD_HEIGHT);
+        Assert.assertEquals(8, ChessBoard.MAX_BOARD_HEIGHT);
     }
 
     @Test
@@ -38,7 +39,7 @@ public class ChessBoardTest {
     @Test
     public void testIsLegalBoardPosition_False_X_equals_11_Y_equals_5() {
         boolean isValidPosition = testSubject.isLegalBoardPosition(11, 5);
-        Assert.assertTrue(isValidPosition);
+        Assert.assertFalse(isValidPosition);
     }
 
     @Test
@@ -91,7 +92,18 @@ public class ChessBoardTest {
     public void testRemovePiece_should_remove_element_and_make_referenceEmpty() {
         Pawn pawn = new Pawn(PieceColor.BLACK);
         testSubject.addPiece(pawn, 6, 5, PieceColor.BLACK);
-        Pawn pawnRemoved = testSubject.removePiece(6, 5);
+        Piece pawnRemoved = testSubject.removePiece(6, 5);
         Assert.assertNotNull(pawnRemoved);
+        Assert.assertNull(testSubject.getElementFromBoard(6, 5));
+    }
+
+    @Test
+    public void test_get_element_from_a_location_on_board() {
+        Pawn pawn = new Pawn(PieceColor.BLACK);
+        testSubject.addPiece(pawn, 6, 5, PieceColor.BLACK);
+        Piece retrievedPawn = testSubject.getElementFromBoard(6, 5);
+        Assert.assertNotNull(retrievedPawn);
+        Assert.assertEquals(6, retrievedPawn.getXCoordinate());
+        Assert.assertEquals(5, retrievedPawn.getYCoordinate());
     }
 }
